@@ -1,0 +1,62 @@
+﻿<ResourceDictionary x:Class="SimpleSlotMachine.Style"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleSlotMachine"
+        mc:Ignorable="d">
+    
+    <!-- Start Color -->
+    <SolidColorBrush x:Key="ButtonStopColor" Color="#9B1B30" />
+    <SolidColorBrush x:Key="HoverStopColor" Color="#842620"/>
+    <!-- End Color -->
+    
+    <!-- Start Template -->
+    <ControlTemplate x:Key="ButtonStopTemplate" TargetType="Button">
+        <Grid TextBlock.FontSize="15" TextBlock.Foreground="White">
+            <Rectangle x:Name="ButtonRetangle" Fill="{DynamicResource ButtonStopColor}"/>
+            <ContentPresenter Content="{TemplateBinding Content}" Margin="10,0,10,0"
+                              HorizontalAlignment = "Center" VerticalAlignment = "Center" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property = "IsMouseOver" Value = "True">
+                <Setter TargetName="ButtonRetangle" Property="Fill" Value="{DynamicResource HoverStopColor}">
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value = "False">
+                <Setter TargetName="ButtonRetangle" Property="Fill" Value="{DynamicResource HoverStopColor}">
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <ControlTemplate x:Key="ButtonRollTemplate" TargetType="Button">
+        <Grid TextBlock.FontSize="15" TextBlock.Foreground="White">
+            <Rectangle x:Name="ButtonRetangle" Fill="Gold"/>
+            <ContentPresenter Content="{TemplateBinding Content}" Margin="10,0,10,0"
+                              HorizontalAlignment = "Center" VerticalAlignment = "Center" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property = "IsMouseOver" Value = "True">
+                <Setter TargetName="ButtonRetangle" Property="Fill" Value="Yellow">
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value = "False">
+                <Setter TargetName="ButtonRetangle" Property="Fill" Value="Yellow">
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!-- End Template -->
+
+    <!-- Start Style -->
+    <Style x:Key="buttonStop" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{StaticResource ButtonStopTemplate}"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    
+    <Style x:Key="buttonRoll" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{StaticResource ButtonRollTemplate}"/>
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+    <!-- End Style -->
+</ResourceDictionary>

@@ -1,0 +1,124 @@
+﻿<Window x:Class="SimpleSlotMachine.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimpleSlotMachine"
+        xmlns:viewModel="clr-namespace:SimpleSlotMachine.ViewModels"
+        mc:Ignorable="d"
+        Background="Black"
+        Title="MainWindow" Height="750" Width="550"
+        ResizeMode="NoResize">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Background="Gold" Grid.Row="0" Grid.ColumnSpan="3">
+            <Label Content="{Binding Description}" 
+               FontSize="20" 
+               HorizontalAlignment="Center"/>
+        </StackPanel>
+        <Label Content="{Binding Slot1.Name}"
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"
+               FontSize="20"
+               Grid.Column="0"
+               Grid.Row="1"
+               Foreground="White"/>
+        <Label Content="{Binding Slot2.Name}"               
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"
+               FontSize="20"
+               Grid.Column="1"
+               Grid.Row="1"
+               Foreground="White"/>
+        <Label Content="{Binding Slot3.Name}" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Center"
+               FontSize="20"
+               Grid.Column="2"
+               Grid.Row="1"
+               Foreground="White"/>
+
+        <Image Grid.Column="0"
+               Grid.Row="2"
+               Source="{Binding Slot1.ImagePath}"
+               Margin="10,10,10,10"/>
+        <Image Grid.Column="1"
+               Grid.Row="2"
+               Source="{Binding Slot2.ImagePath}"
+               Margin="10,10,10,10"/>
+        <Image Grid.Column="2"
+               Grid.Row="2"
+               Source="{Binding Slot3.ImagePath}"
+               Margin="10,10,10,10"/>
+
+        <Button Grid.Column="0"
+                Grid.Row="3"
+                Margin="5,0,5,0"
+                Command="{Binding StopRollSlot1Command}"
+                Style="{StaticResource buttonStop}"
+                Content="Stop"
+                FontSize="30"/>
+        <Button Grid.Column="1"
+                Grid.Row="3"
+                Margin="5,0,5,0"
+                Command="{Binding StopRollSlot2Command}"
+                Style="{StaticResource buttonStop}"
+                Content="Stop"/>
+        <Button Grid.Column="2"
+                Grid.Row="3"
+                Margin="5,0,5,0"
+                Command="{Binding StopRollSlot3Command}"
+                Style="{StaticResource buttonStop}"
+                Content="Stop"/>
+
+        <Button Grid.Row="4"
+                Grid.ColumnSpan="3"
+                Command="{Binding RollSlotMachineCommand}"
+                Margin="5,7,5,7"
+                Content="Roll"
+                Style="{StaticResource buttonRoll}"/>
+
+        <StackPanel Grid.Row="5" Margin="0,30,0,0">
+            <TextBlock Foreground="White" 
+                       Margin="0,0,0,10" 
+                       Height="30" 
+                       FontSize="20" 
+                       Text="Put Your Coin :"/>
+            <TextBlock Height="30" 
+                       FontSize="20" 
+                       Text="Remaining Coins :"
+                       Foreground="White"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,30,0,0">
+            <TextBox Margin="0,0,0,10" 
+                     Height="30" 
+                     PreviewTextInput="NumberValidationTextBox"
+                     Text="{Binding Bet}"/>
+            <TextBlock Height="30" 
+                       FontSize="20" 
+                       Foreground="White"
+                       Text="{Binding RemainingCoin}"/>
+        </StackPanel>
+        
+
+        
+    </Grid>
+</Window>
